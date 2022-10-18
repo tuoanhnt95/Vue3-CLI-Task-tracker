@@ -44,34 +44,29 @@ export default {
         t.id === id ? {...t, reminder: !t.reminder} : t
       )
     },
-    addTask(newTask) {
+    async addTask(newTask) {
       this.tasks = [...this.tasks, newTask]
     },
     toggleAddTask() {
       this.showAddTask = !this.showAddTask
+    },
+    async fetchTasks() {
+      const res = await fetch('http://localhost:5000/tasks')
+
+      const data = await res.json()
+
+      return data
+    },
+    async fetchTask(id) {
+      const res = await fetch(`http://localhost:5000/tasks/${id}`)
+
+      const data = await res.json()
+
+      return data
     }
   },
-  created() {
-    this.tasks = [
-    {
-        id: 1,
-        text: 'Confirm barbecue place',
-        day: '2022/10/18 at 12:30',
-        reminder: true,
-      },
-      {
-        id: 2,
-        text: 'Hang out with Jonas',
-        day: '2022/10/18 at 19:00',
-        reminder: true,
-      },
-      {
-        id: 3,
-        text: 'Watch movie with le Chris',
-        day: '2022/10/21 at 18:45',
-        reminder: false,
-      },
-    ]
+  async created() {
+    this.tasks = await this.fetchTasks()
   }
 }
 </script>
