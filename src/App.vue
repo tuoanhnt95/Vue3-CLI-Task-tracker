@@ -4,6 +4,8 @@
    </div>
 </template>
 
+
+
 <script>
 import Header from './components/Header'
 
@@ -11,6 +13,33 @@ export default {
   name: 'App',
   components: {
     Header    
+  },
+  data() {
+    return {
+      tasks: []
+    }
+  },
+  created() {
+    this.tasks = [
+    {
+        id: 1,
+        text: 'Confirm barbecue place',
+        day: '2022/10/18 at 12:30',
+        reminder: true,
+      },
+      {
+        id: 2,
+        text: 'Hang out with Jonas',
+        day: '2022/10/18 at 19:00',
+        reminder: true,
+      },
+      {
+        id: 3,
+        text: 'Watch movie with le Chris',
+        day: '2022/10/21 at 18:45',
+        reminder: false,
+      },
+    ]
   }
 }
 </script>
