@@ -2,6 +2,7 @@
     <header>
         <h1>{{ title }}</h1>
         <Button 
+            v-show="homePage"
             :text="computedText" 
             :color="computedColor" 
             @btn-click="$emit('toggle-add-task')"
@@ -27,6 +28,9 @@ export default {
         },
         computedColor() {
             return this.showAddTask ? 'red' : 'green'
+        },
+        homePage() {
+            return this.$route.path === '/'
         }
     }
 }
