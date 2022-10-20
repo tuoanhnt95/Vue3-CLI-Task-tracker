@@ -12,11 +12,13 @@
         @delete-task="deleteTask" 
         @toggle-reminder="toggleReminder"
         :tasks='tasks'/>
+      <Footer />
    </div>
 </template>
 
 <script>
 import Header from './components/Header';
+import Footer from './components/Footer';
 import Tasks from './components/Tasks';
 import AddTask from './components/AddTask';
 
@@ -24,6 +26,7 @@ export default {
   name: 'App',
   components: {
     Header,
+    Footer,
     Tasks,
     AddTask,    
   },
@@ -42,9 +45,7 @@ export default {
 
         res.status === 200 
           ? (this.tasks = this.tasks.filter((t) => t.id !== id))
-          : alert('Error deleting task')
-
-        
+          : alert('Error deleting task')     
       }
     }, 
     async toggleReminder(id) {
